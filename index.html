@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f8eaf0">
+<title>ARONA — A Little Surprise</title>
+<style>
+:root{--pink:#f8eaf0;--rose:#bd7895;--deep:#75465c;--cream:#fffaf7;--ink:#493541}
+*{box-sizing:border-box} body{margin:0;min-height:100vh;font-family:Georgia,'Times New Roman',serif;color:var(--ink);background:radial-gradient(circle at 15% 15%,#fff 0 2px,transparent 3px),linear-gradient(145deg,#fff8fb,#f3dce7 55%,#fff6ef);background-size:35px 35px,auto}
+main{width:min(92%,520px);margin:0 auto;padding:28px 0 42px;min-height:100vh;display:flex;align-items:center}
+.card{width:100%;background:#ffffffdf;border:1px solid #fff;border-radius:28px;padding:30px 23px;box-shadow:0 18px 55px #9c647522;text-align:center;backdrop-filter:blur(10px);animation:appear .65s ease}
+@keyframes appear{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.eyebrow{letter-spacing:4px;text-transform:uppercase;color:var(--rose);font:11px Arial,sans-serif}
+h1{font-size:clamp(34px,9vw,52px);font-weight:normal;margin:12px 0;color:var(--deep)}
+h2{font-size:27px;font-weight:normal;color:var(--deep);line-height:1.25}
+p{font-size:17px;line-height:1.75;margin:14px 0}
+.small{font:12px Arial,sans-serif;color:#987c8b;line-height:1.6}
+button{border:0;border-radius:999px;padding:14px 23px;background:var(--deep);color:white;font-size:15px;cursor:pointer;margin:7px;box-shadow:0 7px 18px #75465c25;transition:.2s}
+button:hover{transform:translateY(-2px);background:#96617b}
+button.secondary{background:#f2dce6;color:var(--deep)}
+.answers{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:22px 0}
+.answers button{margin:0;background:#f7e8ef;color:var(--deep);font-size:20px}
+.hidden{display:none!important}
+.progress{height:8px;border-radius:20px;background:#f1dce6;overflow:hidden;margin:22px 0}
+.bar{height:100%;width:0;background:linear-gradient(90deg,#bd7895,#e9a9bf);transition:width .12s}
+.photo{width:100%;max-height:560px;object-fit:contain;border-radius:17px;background:#f6edf1;margin:14px 0;box-shadow:0 8px 25px #75465c18}
+.heart{font-size:25px;color:#cb799a;margin:12px}
+.footer{margin-top:22px}
+#toast{min-height:24px;color:#a45f7e;font:14px Arial,sans-serif}
+.sparkle{position:fixed;pointer-events:none;opacity:.55;animation:float 8s linear infinite;color:#c27c9a}
+@keyframes float{from{transform:translateY(110vh) rotate(0)}to{transform:translateY(-10vh) rotate(300deg)}}
+@media(max-width:380px){.card{padding:25px 17px}p{font-size:16px}}
+</style>
+</head>
+<body>
+<div class="sparkle" style="left:8%;animation-delay:-2s">✦</div><div class="sparkle" style="left:82%;animation-delay:-5s">♡</div><div class="sparkle" style="left:48%;animation-delay:-7s">✧</div>
+<main>
+<section class="card" id="welcome">
+  <div class="eyebrow">A tiny surprise</div>
+  <h1>ARONA <span class="heart">♡</span></h1>
+  <p>Some things are easier to say when they're written down.</p>
+  <p class="small">This little corner of the internet has a few words for you.</p>
+  <button onclick="show('quiz')">Let's begin ✨</button>
+</section>
+
+<section class="card hidden" id="quiz">
+  <div class="eyebrow">First, a very serious question</div>
+  <h2>What is 2 + 2?</h2>
+  <p class="small">Think carefully. This is an extremely important test. 😌</p>
+  <div class="answers">
+    <button onclick="wrong()">3</button><button onclick="correct()">4</button>
+    <button onclick="wrong()">5</button><button onclick="wrong()">22</button>
+  </div>
+  <div id="toast"></div>
+</section>
+
+<section class="card hidden" id="loading">
+  <div class="eyebrow">Please wait</div>
+  <h2>Preparing your little surprise...</h2>
+  <p id="loadText">Collecting a few words and a little bit of courage. ♡</p>
+  <div class="progress"><div class="bar" id="bar"></div></div>
+  <div class="small" id="percent">0%</div>
+</section>
+
+<section class="card hidden" id="words">
+  <div class="eyebrow">Just one little thing</div>
+  <h2>Please don't say sorry for everything. ♡</h2>
+  <p>You really don't have to apologize for every little thing. I honestly don't like it when you keep saying sorry, especially when there's nothing to be sorry about.</p>
+  <p>And there's something else I wanted you to know: I genuinely enjoy talking to you. Even our random little conversations can make an ordinary day feel a bit nicer.</p>
+  <p>So please, be comfortable and be yourself. You don't have to find a reason to say sorry every time. ✨</p>
+  <button onclick="show('memory')">One more thing →</button>
+</section>
+
+<section class="card hidden" id="memory">
+  <div class="eyebrow">A little memory</div>
+  <h2>It's the little conversations...</h2>
+  <img class="photo" src="assets/arona-memory.jpg" alt="A shared chat screenshot">
+  <p>Maybe it's just a simple chat, a shared video, or a tiny reply — but sometimes these little moments are what make a conversation memorable.</p>
+  <p>And honestly, I like these little moments more than you might think. 😊</p>
+  <button onclick="show('final')">Okay, last page →</button>
+</section>
+
+<section class="card hidden" id="final">
+  <div class="eyebrow">And finally...</div>
+  <h1>Oops! 😂</h1>
+  <h2>One last tiny problem.</h2>
+  <p>I'm afraid I can't close this page for you. You'll have to close this tab yourself from your mobile browser.</p>
+  <p class="small">Sorry for that! Just a little prank. I hope this made you smile. ♡</p>
+  <div class="heart">♡ ✦ ♡</div>
+  <button class="secondary" onclick="show('welcome')">Read it again</button>
+</section>
+</main>
+<script>
+function show(id){
+  document.querySelectorAll('.card').forEach(el=>el.classList.add('hidden'));
+  document.getElementById(id).classList.remove('hidden');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function wrong(){
+  const messages=["Not quite! Try again 😄","Hmm... that's not it. One more try!","Math is testing us today 😂"];
+  document.getElementById('toast').textContent=messages[Math.floor(Math.random()*messages.length)];
+}
+function correct(){
+  show('loading');
+  let n=0;
+  const bar=document.getElementById('bar'), pct=document.getElementById('percent');
+  const timer=setInterval(()=>{
+    n+=2+Math.floor(Math.random()*5); if(n>100)n=100;
+    bar.style.width=n+'%';pct.textContent=n+'%';
+    if(n===100){clearInterval(timer);setTimeout(()=>show('words'),450);}
+  },95);
+}
+</script>
+</body>
+</html>
